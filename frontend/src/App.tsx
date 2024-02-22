@@ -1,12 +1,36 @@
-import { createSignal } from 'solid-js'
+import { Component, ParentComponent } from 'solid-js'
+import { A } from '@solidjs/router'
 
-function App() {
+const App: ParentComponent = (props) => {
+    return (
+        <>
+            <Header />
+            {props.children}
+        </>
+    )
+}
+
+const Header: Component = () => {
   return (
-    <>
-      <h1>Such Blog Many Happy!</h1>
-      <p>Welcome.</p>
-    </>
+    <nav>
+        <A href='/'>Home</A>
+        <LoginPanel />
+    </nav>
   )
+}
+
+const LoginPanel: Component<{ userID?: string }> = (props) => {
+    if (props.userID)
+        return (
+            <></>
+        );
+
+    return (
+        <div style="float: right;">
+            <A href='/signup' style='margin-right: 1rem;'>Sign up</A>
+            <A href='/login'>Login</A>
+        </div>
+    )
 }
 
 export default App
