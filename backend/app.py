@@ -3,6 +3,7 @@ from flask import (
     g,
     render_template,
     request,
+    jsonify,
     redirect,
     url_for,
     flash,
@@ -18,7 +19,7 @@ app.secret_key = "notsafe"
 
 def get_db():
     if "db" not in g:
-        g.db = sqlite3.connect("bestdbever.sqlite3")
+        g.db = sqlite3.connect("db.sqlite3")
         g.db.row_factory = sqlite3.Row
         g.db.set_trace_callback(print)
     return g.db
@@ -44,6 +45,7 @@ def fourohfour():
 @app.route("/api/signup", methods=["POST"])
 def signup():
     db = get_db()
+    d = {"success": False, "text": ""}
     if request.method == "POST":
         username = request.form["username"]
         email = request.form["email"]
@@ -53,10 +55,18 @@ def signup():
         if password == password_confirm:
             password = ph.hash(str(password))
             db.execute(
-                    "INSERT INTO user (username, password, email) VALUES (?,?,?,?)",
+                    "INSERT INTO user (username, password, email) VALUES (?,?,?)",
                     (username, password, email),
             )
-            db.commit()
+            try:
+                db.commit()
+                d["success"] = True
+            except Exception as e:
+                d["text"] = d["text"] + "Username or email already exists. "
+
+        else:
+            d["text"] = d["text"] + "Passwords do not match. "
+    return jsonify(d)
 
 
 if __name__ == "__main__":
