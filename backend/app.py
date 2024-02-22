@@ -10,6 +10,7 @@ from flask import (
     make_response,
 )
 import sqlite3
+import argon2
 
 app = Flask(__name__)
 app.secret_key = "notsafe"
@@ -38,6 +39,24 @@ def index():
 @app.route("/404")
 def fourohfour():
     return render_template("404.html")
+
+
+@app.route("/api/signup", methods=["POST"])
+def signup():
+    db = get_db()
+    if request.method == "POST":
+        username = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
+        password_confirm = request.form["password-confirm"]
+        ph = argon2.PasswordHasher()
+        if password == password_confirm:
+            password = ph.hash(str(password))
+            db.execute(
+                    "INSERT INTO user (username, password, email) VALUES (?,?,?,?)",
+                    (username, password, email),
+            )
+            db.commit()
 
 
 if __name__ == "__main__":
