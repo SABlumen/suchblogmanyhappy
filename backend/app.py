@@ -10,6 +10,7 @@ from flask import (
     session,
     make_response,
 )
+from flask_cors import CORS
 import sqlite3
 import argon2
 
@@ -70,4 +71,7 @@ def signup():
 
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", port=5000, debug=True)
+    debug = True
+    if debug:
+        CORS(app, origins=["*"])
+    app.run("0.0.0.0", port=5000, debug=debug)
