@@ -4,6 +4,7 @@ from flask import (
     render_template,
     request,
     jsonify,
+    status,
     redirect,
     url_for,
     flash,
@@ -32,20 +33,11 @@ def close_db(e=None):
         db.close()
 
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
-@app.route("/404")
-def fourohfour():
-    return render_template("404.html")
-
-
 @app.route("/api/signup", methods=["POST"])
 def signup():
     db = get_db()
     d = {"success": False, "text": ""}
+    http_status = status.HTTP_500_INTERNAL_SERVER_ERROR
     if request.method == "POST":
         username = request.form["username"]
         email = request.form["email"]
@@ -61,12 +53,13 @@ def signup():
             try:
                 db.commit()
                 d["success"] = True
-            except Exception as e:
+                http_status = status.HTTP_201_CREATED
+            except Exception:
                 d["text"] = d["text"] + "Username or email already exists. "
-
+                http_status = status.HTTP_400_BAD_REQUEST
         else:
             d["text"] = d["text"] + "Passwords do not match. "
-    return jsonify(d)
+    return jsonify(d), http_status
 
 
 if __name__ == "__main__":
