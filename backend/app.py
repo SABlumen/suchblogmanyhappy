@@ -4,13 +4,13 @@ from flask import (
     render_template,
     request,
     jsonify,
-    status,
     redirect,
     url_for,
     flash,
     session,
     make_response,
 )
+from flask_api import status
 from flask_cors import CORS
 import sqlite3
 import argon2
