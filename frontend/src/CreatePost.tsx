@@ -9,9 +9,11 @@ const CreatePost: Component = () => {
         new EasyMDE({ element: textArea });
     });
 
-    return <div>
-        <textarea ref={textArea} />
-    </div>;
+    return (
+        <div>
+            <textarea ref={textArea} />
+        </div>
+    );
 }
 
 export default CreatePost;

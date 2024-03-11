@@ -16,7 +16,7 @@ export const SignUp: Component = () => {
         data.append("email", email.value);
         data.append("password", password.value);
         data.append("password-confirm", passwordConfirm.value);
-    
+
         fetch("http://localhost:5000/api/signup", {
             method: "POST",
             body: data,

@@ -7,7 +7,7 @@ const App: ParentComponent = (props) => {
             <Header />
             {props.children}
         </>
-    )
+    );
 }
 
 const Header: Component = () => {
@@ -16,7 +16,7 @@ const Header: Component = () => {
         <A href='/'>Home</A>
         <LoginPanel />
     </nav>
-  )
+  );
 }
 
 const LoginPanel: Component<{ userID?: string }> = (props) => {
@@ -30,7 +30,7 @@ const LoginPanel: Component<{ userID?: string }> = (props) => {
             <A href='/signup' style='margin-right: 1rem;'>Sign up</A>
             <A href='/login'>Login</A>
         </div>
-    )
+    );
 }
 
 export default App
