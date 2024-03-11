@@ -1,5 +1,5 @@
-import { Component, ParentComponent } from 'solid-js'
-import { A } from '@solidjs/router'
+import { Component, ParentComponent, createEffect } from 'solid-js'
+import { A, useLocation } from '@solidjs/router'
 
 const App: ParentComponent = (props) => {
     return (
@@ -20,6 +20,8 @@ const Header: Component = () => {
 }
 
 const LoginPanel: Component<{ userID?: string }> = (props) => {
+    const location = useLocation();
+
     if (props.userID)
         return (
             <></>
@@ -27,8 +29,8 @@ const LoginPanel: Component<{ userID?: string }> = (props) => {
 
     return (
         <div style="float: right;">
-            <A href='/signup' style='margin-right: 1rem;'>Sign up</A>
-            <A href='/login'>Login</A>
+            <A href='/signup' state={{ prevLocation: location.pathname }} style='margin-right: 1rem;'>Sign up</A>
+            <A href='/login' state={{ prevLocation: location.pathname }}>Login</A>
         </div>
     );
 }

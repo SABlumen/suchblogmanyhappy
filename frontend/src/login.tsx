@@ -1,4 +1,4 @@
-import { useNavigate } from "@solidjs/router";
+import { useLocation, useNavigate } from "@solidjs/router";
 import { Component } from "solid-js";
 
 export const SignUp: Component = () => {
@@ -8,6 +8,7 @@ export const SignUp: Component = () => {
     let passwordConfirm: HTMLInputElement;
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSubmit = async (event: Event) => {
         event.preventDefault();
@@ -24,7 +25,7 @@ export const SignUp: Component = () => {
             .then(res => res.json())
             .then(body => {
                 if (body.success) {
-                    navigate("/");
+                    navigate(location.state?.prevLocation ?? "/");
                     return;
                 }
             })
