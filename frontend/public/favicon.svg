@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733334 67.733334"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-26.676456,-61.432354)">
+    <g
+       id="g1"
+       transform="matrix(1.0451424,0,0,1.0451424,-0.29471752,-1.8636807)">
+      <circle
+         style="opacity:0.983607;fill:#ff0000;stroke:none;stroke-width:4"
+         id="path1"
+         cx="58.210098"
+         cy="92.965996"
+         r="31.533642" />
+      <text
+         xml:space="preserve"
+         style="font-size:14.1111px;font-family:Impact;-inkscape-font-specification:Impact;text-align:center;text-anchor:middle;opacity:0.983607;fill:#ff0000;stroke:none;stroke-width:4"
+         x="58.334122"
+         y="98.543602"
+         id="text1"><tspan
+           id="tspan1"
+           style="fill:#ffffff;stroke-width:4"
+           x="58.334122"
+           y="98.543602">SBMH</tspan></text>
+    </g>
+  </g>
+</svg>
