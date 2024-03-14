@@ -1,4 +1,4 @@
-import { Component, ParentComponent, createEffect } from 'solid-js'
+import { Component, ParentComponent } from 'solid-js'
 import { A, useLocation } from '@solidjs/router'
 
 const App: ParentComponent = (props) => {
